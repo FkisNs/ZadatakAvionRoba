@@ -3,7 +3,7 @@ package zadaci;
 import java.sql.ResultSet;
 
 public class Konstante {
-    public static final String DATABASE_URL="jdbc:sqlite:restoranSQLite.db";
+    public static final String DATABASE_URL="jdbc:sqlite:avionRoba.db";
     public static void prikazUniverzalan(ResultSet rs) throws Exception{
         int columnCount=rs.getMetaData().getColumnCount();
         while (rs.next()){

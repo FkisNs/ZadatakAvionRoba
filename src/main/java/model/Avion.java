@@ -24,8 +24,7 @@ public class Avion {
     public Avion() {
     }
 
-    public Avion(int id, String naziv, int rasponKrila) {
-        this.id = id;
+    public Avion(String naziv, int rasponKrila) {
         this.naziv = naziv;
         this.rasponKrila = rasponKrila;
     }

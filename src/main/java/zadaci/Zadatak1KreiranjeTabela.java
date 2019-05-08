@@ -13,7 +13,7 @@ public class Zadatak1KreiranjeTabela {
     public static void main(String[] args) {
         ConnectionSource connectionSource = null;
         try {
-            connectionSource = new JdbcConnectionSource("jdbc:sqlite:prodavnica.db");
+            connectionSource = new JdbcConnectionSource("jdbc:sqlite:avionRoba.db");
             TableUtils.dropTable(connectionSource, Roba.class,true);
             TableUtils.dropTable(connectionSource, Avion.class,true);
 
