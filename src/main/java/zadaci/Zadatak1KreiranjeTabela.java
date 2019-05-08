@@ -1,25 +1,33 @@
 package zadaci;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
+import model.Avion;
+import model.Roba;
+
+import java.io.IOException;
+
 
 public class Zadatak1KreiranjeTabela {
     public static void main(String[] args) {
-        Connection c = null;
-        Statement stmt = null;
-        try{
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:avionRoba.db");
-            System.out.println("Uspesno uspostavljena konekcija");
-        }catch (Exception e){
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-        }finally {
-            try{
-                c.close();
-            }catch (SQLException e){
-                e.printStackTrace();
+        ConnectionSource connectionSource = null;
+        try {
+            connectionSource = new JdbcConnectionSource("jdbc:sqlite:prodavnica.db");
+            TableUtils.dropTable(connectionSource, Roba.class,true);
+            TableUtils.dropTable(connectionSource, Avion.class,true);
+
+            TableUtils.createTable(connectionSource, Avion.class);
+            TableUtils.createTable(connectionSource, Roba.class);
+        }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (connectionSource != null) {
+                try {
+                    connectionSource.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
